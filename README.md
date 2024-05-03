@@ -75,4 +75,6 @@ Les numéro de régions ne sont pas encore montré on peux néanmois renseigner 
 
 Si vous voyez un champ texte avec un label et un placeholder qui demande un url d'image, mettez une url d'image sinon vous risquez de provoquer des bugs lors du chargement de ces images.
 
+J'ai aussi mis le jar du backend qui tourne actuellement sur le server à la racine de ce projet si nécessaire.
+
 Je crois avoir fais le tour.
