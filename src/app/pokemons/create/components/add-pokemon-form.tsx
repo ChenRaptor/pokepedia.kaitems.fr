@@ -87,7 +87,6 @@ export default function AddPokemonForm({token}: {token: string}) {
       types: types as PokemonType[],
       regions: regions
     }
-    console.log(pkmnDTO)
     addPokemons(token, pkmnDTO).then(res => {
       if ("error" in res) {
         toast({
@@ -107,9 +106,9 @@ export default function AddPokemonForm({token}: {token: string}) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <h1 className="text-5xl font-extrabold dark:text-white">Ajouter un pokemon au pokedex</h1>
+        <h1 className="text-3xl md:text-5xl font-extrabold dark:text-white">Ajouter un pokemon au pokedex</h1>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="grid gap-2 space-y-2">
               <Label htmlFor="name">Nom du pokemon *</Label>
               <Input id="name" {...form.register("name")} placeholder="Nom du pokemon"/>
@@ -118,7 +117,7 @@ export default function AddPokemonForm({token}: {token: string}) {
               </small>
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="grid gap-2 space-y-2">
               <Label htmlFor="imgUrl">Url de l&apos;image du pokemon *</Label>
               <Input id="imgUrl" {...form.register("imgUrl")} placeholder="https://..."/>
@@ -127,7 +126,7 @@ export default function AddPokemonForm({token}: {token: string}) {
               </small>
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="grid gap-2 space-y-2">
               <Label htmlFor="description">Description *</Label>
               <Textarea id="description" {...form.register("description")} placeholder="Description"/>
@@ -136,7 +135,7 @@ export default function AddPokemonForm({token}: {token: string}) {
               </small>
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField
           control={form.control}
           name="types"
@@ -161,7 +160,7 @@ export default function AddPokemonForm({token}: {token: string}) {
           )}
         />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <FormField
           control={form.control}
           name="regions"

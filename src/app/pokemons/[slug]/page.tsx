@@ -1,4 +1,3 @@
-import { getPokemonSSR } from "@/hooks/use-get-pokemon"
 import { Badge } from "@/registry/new-york/ui/badge"
 import Image from "next/image"
 
@@ -10,27 +9,29 @@ interface PokemonPageProps {
 
 import colorTypes from "@/config/type"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york/ui/card"
-import { PokemonEditDialog } from "./components/pokemon-edit-dialog"
-import { PokemonDeleteDialog } from "./components/pokemon-delete-dialog"
-import PokedexVoiceSpeak from "@/app/pokemons/[slug]/components/text-to-speech"
+import { getTokenInCookies } from "@/lib/cookies"
+import TooltipWrapper from "./components/tooltip-wrapper"
+import { getPokemon } from "@/routes/pokemons"
 
 
 export default async function PokemonPage ({params}: PokemonPageProps) {
   const { slug } = params
-  const pokemon = await getPokemonSSR(slug)
-  console.log(pokemon)
+  const pokemon = await getPokemon(slug)
+  if ("error" in pokemon) {
+    return <div>Erreur</div>
+  }
+
+  const token = await getTokenInCookies()
 
   const audioText = pokemon.description || "Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour."
   return (
     <div className="container mx-auto py-16">
-      <PokemonEditDialog pkmn={pokemon}/>
-      <PokemonDeleteDialog pkmn={pokemon}/>
-      <PokedexVoiceSpeak text={audioText}/>
+      <TooltipWrapper token={token} pokemon={pokemon} audioText={audioText}/>
 
 
 
-      <div className="grid grid-cols-2">
-        <div className="space-y-4">
+      <div className="grid sm:grid-cols-2 grid-cols-1">
+        <div className="space-y-4 order-2 sm:order-1">
           <Card className="h-fit">
             <CardHeader className="space-y-4">
               <CardTitle className="text-3xl font-bold dark:text-white">{pokemon.name}</CardTitle>
@@ -70,7 +71,7 @@ export default async function PokemonPage ({params}: PokemonPageProps) {
         </div>
 
 
-        <div className="m-auto">
+        <div className="m-auto order-1 sm:order-2 max-sm:mb-8">
           { pokemon && <Image src={(pokemon as any).image} alt="alt" height={500} width={500}/> }
         </div>
 

@@ -16,7 +16,7 @@ export default function DeleteTrainerButton({token}: {token: string}) {
   return (
     <Dialog>
     <DialogTrigger asChild>
-      <Button className="w-12 h-12 cursor-pointer" variant="outline"><TrashIcon className="scale-150 stroke-red-500"/></Button>
+      <Button className="w-12 h-12 ml-auto cursor-pointer" variant="outline"><TrashIcon className="scale-150 stroke-red-500"/></Button>
     </DialogTrigger>
     <DialogContent className="sm:max-w-[425px]">
       <DialogHeader>

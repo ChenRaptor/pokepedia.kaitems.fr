@@ -68,7 +68,7 @@ export default function RegisterPage() {
       })
     } else {
       setTokenInCookies(res.token)
-      location.reload();
+      router.refresh()
       router.push("/")
     }
   })
@@ -77,9 +77,9 @@ export default function RegisterPage() {
     <div className="container mx-auto py-16">
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-        <h1 className="text-5xl font-extrabold dark:text-white">Créer un compte</h1>
+        <h1 className="text-3xl sm:text-5xl font-extrabold dark:text-white">Créer un compte</h1>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="grid gap-2 space-y-2">
               <Label htmlFor="username">Nom d&apos;utilisateur *</Label>
               <Input id="username" {...register("username")} placeholder="Utilisateur"/>
@@ -88,7 +88,7 @@ export default function RegisterPage() {
               </small>
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="grid gap-2 space-y-2">
               <Label htmlFor="password">Votre mot de passe *</Label>
               <Input id="password" {...register("password")} placeholder="Mot de passe"/>
@@ -97,7 +97,7 @@ export default function RegisterPage() {
               </small>
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="grid gap-2 space-y-2">
               <Label htmlFor="confirm_password">Confirmer votre mot de passe *</Label>
               <Input id="confirm_password" {...register("confirm_password")} placeholder="Mot de passe"/>

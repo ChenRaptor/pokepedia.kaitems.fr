@@ -48,11 +48,21 @@ interface PokemonEditDialogProps {
 import MultipleSelector, { Option } from '@/components/mutiple-selector';
 import { Textarea } from "@/registry/new-york/ui/textarea"
 import { Pokemon } from "@/routes/pokemons"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/new-york/ui/tooltip"
 export function PokemonEditDialog({pkmn}: PokemonEditDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="absolute top-4 right-4 w-12 h-12 cursor-pointer" variant="outline"><EditIcon className="scale-150" onClick={() => console.log('edit')} /></Button>
+        <div className="absolute top-4 right-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button className="w-12 h-12 cursor-pointer" variant="outline"><EditIcon className="scale-150"/></Button>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            <p>Modifier le pokemon</p>
+          </TooltipContent>
+        </Tooltip>
+        </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

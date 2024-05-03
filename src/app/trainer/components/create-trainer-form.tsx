@@ -43,9 +43,9 @@ export default function CreateTrainerForm({token}: {token: string}) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-    <h1 className="text-5xl font-extrabold dark:text-white">Créer votre dresseur pokemon</h1>
+    <h1 className="text-3xl sm:text-5xl font-extrabold dark:text-white">Créer votre dresseur pokemon</h1>
     <p>Pas encore un dresseur de Pokémon ? Remédiez-y en remplissant ceci.</p>
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="grid gap-2 space-y-2">
           <Label htmlFor="trainerName">Nom du dresseur *</Label>
           <Input id="trainerName" {...register("trainerName")} placeholder="Utilisateur"/>
@@ -54,7 +54,7 @@ export default function CreateTrainerForm({token}: {token: string}) {
           </small>
         </div>
     </div>
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="grid gap-2 space-y-2">
           <Label htmlFor="imgUrl">URL de photo de profil</Label>
           <Input id="imgUrl" {...register("imgUrl")} placeholder="Mot de passe"/>

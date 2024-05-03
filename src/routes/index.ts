@@ -1,6 +1,6 @@
 import handleApiFetchErrors from "./error-route-handler";
 
-async function fetchApi(method: string, url: string, {body, token}: {body?: any, token?: string}) {
+async function fetchApi(method: string, url: string, {body, token, noreturn}: {body?: any, token?: string, noreturn?: boolean}) {
   return await handleApiFetchErrors(async () => {
     let options: RequestInit = {
       method,
@@ -21,6 +21,7 @@ async function fetchApi(method: string, url: string, {body, token}: {body?: any,
     if (!value.ok) {
       throw new Error(value.status.toString());
     }
+    if (noreturn) return {};
     return await value.json();
   })
 }

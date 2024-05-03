@@ -29,8 +29,8 @@ async function deleteTrainer(token: string) : Promise<Trainer | {error: string}>
   return await fetchApi('DELETE',`${prefix}`, {token}) as unknown as Trainer | {error: string}
 }
 
-async function markTrainer(token: string, pokemon: string) : Promise<Trainer | {error: string}> {
-  return await fetchApi('POST',`${prefix}/mark`, {body: {pokemon}, token}) as unknown as Trainer | {error: string}
+async function markTrainer(token: string, pkmnId: string, captured: boolean) : Promise<{error: string}> {
+  return await fetchApi('POST',`${prefix}/mark?captured=${captured}&pkmnId=${pkmnId}`, {token, noreturn: true}) as unknown as {error: string}
 }
 
 export { getTrainer, createTrainer, deleteTrainer, markTrainer }
