@@ -26,6 +26,9 @@ export default async function PokemonPage ({params}: PokemonPageProps) {
       <PokemonEditDialog pkmn={pokemon}/>
       <PokemonDeleteDialog pkmn={pokemon}/>
       <PokedexVoiceSpeak text={audioText}/>
+
+
+
       <div className="grid grid-cols-2">
         <div className="space-y-4">
           <Card className="h-fit">

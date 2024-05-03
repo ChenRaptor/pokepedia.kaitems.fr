@@ -29,6 +29,10 @@ async function deleteTrainer(token: string) : Promise<Trainer | {error: string}>
   return await fetchApi('DELETE',`${prefix}`, {token}) as unknown as Trainer | {error: string}
 }
 
-export { getTrainer, createTrainer, deleteTrainer }
+async function markTrainer(token: string, pokemon: string) : Promise<Trainer | {error: string}> {
+  return await fetchApi('POST',`${prefix}/mark`, {body: {pokemon}, token}) as unknown as Trainer | {error: string}
+}
+
+export { getTrainer, createTrainer, deleteTrainer, markTrainer }
 
 export type {TrainerDTO, Trainer}
