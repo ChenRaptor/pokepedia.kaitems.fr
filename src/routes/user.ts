@@ -15,11 +15,11 @@ interface AuthRequest {
 }
 
 async function registerUser(authentication: AuthRequest) : Promise<User | {error: string}> {
-  return await fetchApi('POST',`${prefix}/register`, authentication) as unknown as User | {error: string}
+  return await fetchApi('POST',`${prefix}/register`, {body: authentication}) as unknown as User | {error: string}
 }
 
 async function loginUser(authentication: AuthRequest) : Promise<User | {error: string}> {
-  return await fetchApi('POST',`${prefix}/login`, authentication) as unknown as User | {error: string}
+  return await fetchApi('POST',`${prefix}/login`, {body: authentication}) as unknown as User | {error: string}
 }
 
 export { registerUser, loginUser }

@@ -1,6 +1,6 @@
 import handleApiFetchErrors from "./error-route-handler";
 
-async function fetchApi(method: string, url: string, body?: any) {
+async function fetchApi(method: string, url: string, {body, token}: {body?: any, token?: string}) {
   return await handleApiFetchErrors(async () => {
     let options: RequestInit = {
       method,
@@ -8,6 +8,10 @@ async function fetchApi(method: string, url: string, body?: any) {
         "Content-Type": "application/json",
       },
     };
+
+    if (token) {
+      options = { ...options, headers: { ...options.headers, Authorization: `Bearer ${token}` } };
+    }
 
     if (body) {
       options = { ...options, body: JSON.stringify(body) };

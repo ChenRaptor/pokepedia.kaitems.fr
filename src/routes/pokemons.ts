@@ -43,7 +43,7 @@ interface GetPokemonsResponse {
 }
 
 async function getPokemons(query: string) : Promise<GetPokemonsResponse | {error: string}> {
-  return await fetchApi('GET',`${prefix}/search?${query}`) as unknown as GetPokemonsResponse | {error: string}
+  return await fetchApi('GET',`${prefix}/search?${query}`,{}) as unknown as GetPokemonsResponse | {error: string}
 }
 
 export { getPokemons }
