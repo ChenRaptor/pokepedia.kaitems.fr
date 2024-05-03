@@ -3,14 +3,12 @@ import { PokemonCard } from "@/components/pokemon-card";
 import { useGetPokemons } from "@/hooks/use-get-pokemons";
 import { DataTablePagination } from "./pagination";
 import { parseAsInteger, useQueryState } from "nuqs";
-import { toast } from "@/registry/new-york/ui/use-toast";
 
 export default function PokemonsContainer() {
   const [page, setPage] = useQueryState('page', parseAsInteger.withOptions({ history: 'push' }).withDefault(0))
 
   const {data, isLoading} = useGetPokemons()
   if (data && "error" in data) {
-    toast({ message: data.error, type: "error" })
     return <div>Error Fetching Pokemons</div>
   }
 
